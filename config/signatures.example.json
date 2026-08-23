@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "game": "Call of Duty: Black Ops 6",
+  "purpose": "Offline/static PE signature validation",
+  "notes": "Example patterns only. Replace these entries with signatures you are authorized to analyze.",
+  "signatures": [
+    {
+      "name": "ExampleFunction",
+      "pattern": "48 89 ?? ?? 57 48 83 EC ??",
+      "section": ".text",
+      "expectedMatches": 1,
+      "previousRva": "0x1000",
+      "resolver": { "kind": "match", "addend": 0 },
+      "notes": "Demonstrates direct match -> RVA resolution."
+    },
+    {
+      "name": "ExampleRel32Target",
+      "pattern": "E8 ?? ?? ?? ?? 48 8B",
+      "section": ".text",
+      "expectedMatches": 1,
+      "resolver": {
+        "kind": "rel32",
+        "displacementOffset": 1,
+        "nextInstructionOffset": 5,
+        "addend": 0
+      },
+      "notes": "Demonstrates resolving an x86-64 relative CALL/JMP target."
+    }
+  ]
+}
